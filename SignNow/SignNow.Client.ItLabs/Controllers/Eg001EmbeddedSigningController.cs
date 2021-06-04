@@ -6,7 +6,9 @@ using SignNow.Net;
 using SignNow.Net.Model;
 using SignNow.Net.Model.Requests;
 using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace SignNow.Client.ItLabs.Controllers
@@ -65,8 +67,9 @@ namespace SignNow.Client.ItLabs.Controllers
             var documentId = string.Empty;
 
             //var template = await context.Documents.GetDocumentAsync("2d6b1654b85d4c25bf1f975c0a9b2a980b423bd1");
+            var filePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\_demo_resources\\";
 
-            using (var fileStream = System.IO.File.OpenRead(@"D:\_it-labs projects\Signers\Invoice - tags.pdf"))
+            using (var fileStream = System.IO.File.OpenRead($"{filePath}\\Invoice - tags.pdf"))
             {
                 var rd = new Random();
                 var rand_num = rd.Next(100, 999);
@@ -190,7 +193,7 @@ namespace SignNow.Client.ItLabs.Controllers
             //}
 
 
-        
+
             // Redirect the user to the Signing Ceremony
             return Redirect(embeddedInviteLinkResponse.Link.ToString());
         }

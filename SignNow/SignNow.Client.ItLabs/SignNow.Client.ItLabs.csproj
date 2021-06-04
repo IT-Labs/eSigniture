@@ -13,4 +13,16 @@
     <ProjectReference Include="..\SignNow.Net\SignNow.Net.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="_demo_resources\Invoice - tags.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="_demo_resources\Invoice - tags.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="_demo_resources\Invoice.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
