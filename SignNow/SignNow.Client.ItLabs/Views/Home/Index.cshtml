@@ -1,0 +1,133 @@
+@{ //var locals = ViewData["locals"] as Locals;//ViewBag.Locals;
+    //bool showDoc;
+    //Boolean.TryParse(ViewData["showDoc"].ToString(), out showDoc);//ViewBag.ShowDoc;
+
+    Layout = "_HomeLayout"; }
+
+@model FolderModel
+
+<div class="container" style="margin-top: 40px" id="index-page">
+
+    <h2>Basic Examples</h2>
+    <h4 id="example001">1. <a href="eg001">Embedded Signing Ceremony</a></h4>
+    <br />
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 order-md-1">
+                <h4 class="mb-3">Folders</h4>
+                <ul class="list-group mb-3">
+                    @{ foreach (var folder in Model.Folders)
+                        {
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                    <h6 class="my-0"><a href="?folderId=@folder.Id">@folder.Name</a></h6>
+                    <small class="text-muted">Brief description</small>
+                </div>
+                <span class="text-muted">@DocumentCount(folder)</span>
+            </li>
+ } }
+                </ul>
+            </div>
+            <div class="col-md-8 order-md-2">
+                <h4 class="mb-3">Documents</h4>
+                <ul class="list-group mb-3">
+                    @{ foreach (var document in Model.Documents)
+                        {
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                    <h6 class="my-0"><a href="@Url.Action("DownloadFile", "Home", new { documentId = document.Id })">@document.Name</a></h6>
+                    <small class="text-muted">@document.Created.ToString("MMM dd, yyyy") at @document.Created.ToString("t")</small>
+                    <br />
+                    <small class="text-muted">
+                        Signers (@document.InvitesStatus.Count()):
+                        @{ foreach (var item in document.InvitesStatus)
+                                            {
+                            @Html.Raw(InviteStatus(item.Status)) <b>@item.SignerEmail</b> } }
+                    </small>
+                </div>
+                <span class="text-muted">@DocumentStatus(document.Status)</span>
+            </li>
+ } }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <style>
+        .dot-green {
+            height: 7px;
+            width: 7px;
+            background-color: green;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 3px;
+        }
+        .dot-orange {
+            height: 7px;
+            width: 7px;
+            background-color: orange;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 3px;
+        }
+    </style>
+    @functions
+    {
+        public static string InviteStatus(SignNow.Net.Model.InviteStatus status)
+        {
+            var result = "unkown";
+            switch (status)
+            {
+                case SignNow.Net.Model.InviteStatus.Created:
+                    result = "Created";
+                    break;
+                case SignNow.Net.Model.InviteStatus.Fulfilled:
+                    result = "<span class='dot-green' title='Signed'></span";
+                    break;
+                case SignNow.Net.Model.InviteStatus.Pending:
+                    result = "<span class='dot-orange' title='Waiting for others'></span"; ;
+                    break;
+                case SignNow.Net.Model.InviteStatus.Skipped:
+                    result = "Skipped";
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+        public static string DocumentStatus(SignNow.Net.Model.DocumentStatus status)
+        {
+            var result = "unkown";
+            switch (status)
+            {
+                case SignNow.Net.Model.DocumentStatus.NoInvite:
+                    result = "No invites";
+                    break;
+                case SignNow.Net.Model.DocumentStatus.Pending:
+                    result = "Waiting for Others";
+                    break;
+                case SignNow.Net.Model.DocumentStatus.Completed:
+                    result = "Signed";
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+        public static string DocumentCount(SignNow.Net.Model.SignNowFolder folder)
+        {
+            var result = "";
+
+            if (folder.DocumentCount != "0")
+                return folder.DocumentCount;
+
+            if (folder.TemplateCount != "0")
+                return folder.TemplateCount;
+
+            return result;
+        } }
+
+    <!-- anchor-js is only for the index page -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+    <script>anchors.options.placement = 'left'; anchors.add('h4')</script>
+</div>

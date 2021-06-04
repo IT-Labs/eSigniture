@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/SignNow/SignNow.Client.ItLabs/bin/Debug/net5.0
+/SignNow/.vs/SignNow.Net
+/SignNow/SignNow.Net/bin/Debug
+/SignNow/SignNow.Net/obj
+/SignNow/SignNow.Client.ItLabs/obj
