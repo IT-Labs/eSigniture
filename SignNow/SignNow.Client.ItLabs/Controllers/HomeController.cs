@@ -39,7 +39,7 @@ namespace SignNow.Client.ItLabs.Controllers
 
             // token for user
             var token = Authentication.RequestAccessToken(ApiBaseUrl, credentials).Result;
-            var context = new SignNowContext(ApiBaseUrl, token);
+            var context = new ExtendedSignNowContext(ApiBaseUrl, token);
 
             var foldersResponse = await context.Documents.GetFoldersAsync();
 

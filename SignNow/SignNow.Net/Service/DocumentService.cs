@@ -103,35 +103,35 @@ namespace SignNow.Net.Service
                 .ConfigureAwait(false);
         }
 
-        public async Task<FoldersResponse> GetFoldersAsync(CancellationToken cancellationToken = default)
-        {
-            var requestedDocuments = "user/folder";
+        //public async Task<FoldersResponse> GetFoldersAsync(CancellationToken cancellationToken = default)
+        //{
+        //    var requestedDocuments = "user/folder";
 
-            var requestOptions = new GetHttpRequestOptions
-            {
-                RequestUrl = new Uri(ApiBaseUrl, requestedDocuments),
-                Token = Token
-            };
+        //    var requestOptions = new GetHttpRequestOptions
+        //    {
+        //        RequestUrl = new Uri(ApiBaseUrl, requestedDocuments),
+        //        Token = Token
+        //    };
 
-            return await SignNowClient
-                .RequestAsync<FoldersResponse>(requestOptions, cancellationToken)
-                .ConfigureAwait(false);
-        }
+        //    return await SignNowClient
+        //        .RequestAsync<FoldersResponse>(requestOptions, cancellationToken)
+        //        .ConfigureAwait(false);
+        //}
 
-        public async Task<FolderResponse> GetFolderAsync(string folderId, CancellationToken cancellationToken = default)
-        {
-            var requestedDocuments = $"folder/{folderId}";
+        //public async Task<FolderResponse> GetFolderAsync(string folderId, CancellationToken cancellationToken = default)
+        //{
+        //    var requestedDocuments = $"folder/{folderId}";
 
-            var requestOptions = new GetHttpRequestOptions
-            {
-                RequestUrl = new Uri(ApiBaseUrl, requestedDocuments),
-                Token = Token
-            };
+        //    var requestOptions = new GetHttpRequestOptions
+        //    {
+        //        RequestUrl = new Uri(ApiBaseUrl, requestedDocuments),
+        //        Token = Token
+        //    };
 
-            return await SignNowClient
-                .RequestAsync<FolderResponse>(requestOptions, cancellationToken)
-                .ConfigureAwait(false);
-        }
+        //    return await SignNowClient
+        //        .RequestAsync<FolderResponse>(requestOptions, cancellationToken)
+        //        .ConfigureAwait(false);
+        //}
 
         /// <inheritdoc />
         public async Task<SignNowDocument> GetDocumentAsync(string documentId, CancellationToken cancellationToken = default)

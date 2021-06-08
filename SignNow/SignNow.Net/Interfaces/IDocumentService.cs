@@ -33,8 +33,8 @@ namespace SignNow.Net.Interfaces
         /// <exception cref="System.ArgumentException">If document identity is not valid.</exception>
         Task<UploadDocumentResponse> UpdateDocumentFieldsAsync(string documentId, IReadOnlyCollection<ISignNowField> fields, CancellationToken cancellationToken = default);
         Task<UploadDocumentResponse> UpdateDocumentFieldsAsync(string documentId, IEnumerable<UpdateDocumentFields> fields, CancellationToken cancellationToken = default);
-        Task<FoldersResponse> GetFoldersAsync(CancellationToken cancellationToken = default);
-        Task<FolderResponse> GetFolderAsync(string folderId, CancellationToken cancellationToken = default);
+        //Task<FoldersResponse> GetFoldersAsync(CancellationToken cancellationToken = default);
+        //Task<FolderResponse> GetFolderAsync(string folderId, CancellationToken cancellationToken = default);
         /// <summary>
         /// Uploads a file to the SignNow account and creates a document.
         /// This method accepts .doc, .docx, .pdf, and .png file types.
