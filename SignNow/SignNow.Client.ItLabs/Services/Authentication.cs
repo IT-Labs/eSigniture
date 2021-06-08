@@ -28,6 +28,22 @@ namespace SignNow.Client.ItLabs.Services
             return await oauth.GetTokenAsync(userLogin, userPassword, Scope.All)
                 .ConfigureAwait(false);
         }
+        public static async Task<Token> RequestAccessTokenWithCode(Uri apiBase, CredentialModel credentials)
+        {
+            //https://app-eval.signnow.com/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri={YOUR_REDIRECT_URI}
+
+            Uri apiBaseUrl = apiBase;
+
+            string clientId = credentials.ClientId;
+            string clientSecret = credentials.ClientSecret;
+
+            string code = credentials.Code;
+
+            var oauth = new OAuth2Service(apiBaseUrl, clientId, clientSecret);
+
+            return await oauth.GetTokenAsync(code, Scope.All)
+                .ConfigureAwait(false);
+        }
 
         /// <summary>
         /// Verify access token example

@@ -1,0 +1,20 @@
+@{ Layout = "_HomeLayout"; }
+<div class="container" style="margin-top: 40px" id="index-page">
+    <h4>1. Authorization code Ceremony</h4>
+
+    <p>
+        Generates an authorization code automatically for the application’s client ID: the ceremony is initiated from
+        your website.
+    </p>
+
+    <div class="form-group">
+        <label for="signerEmail">Authorization code</label>
+        <input type="email" class="form-control" id="signerEmail" name="signerEmail"
+               aria-describedby="emailHelp" value="@Context.Request.Query["code"]">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <form class="eg" action="" method="post" data-busy="form">
+        <input type="hidden" name="_csrf" value="@ViewBag.csrfToken">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

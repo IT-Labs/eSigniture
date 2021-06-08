@@ -31,8 +31,11 @@ namespace SignNow.Client.ItLabs.Controllers
                 Login = "zoran.petrushev@it-labs.com",
                 Password = "P@ssw0rd123#",
                 ClientId = "d52b25d3523516690722cbe97a31526f",
-                ClientSecret = "8eae7c60c7b030e2873b56dbc4b75550"
+                ClientSecret = "8eae7c60c7b030e2873b56dbc4b75550",
+                Code = "c6bfe670761546b29b1f50719912c600d26fe9d477c1d1eec9c300700bd95f43"
             };
+
+            //var t = Authentication.RequestAccessTokenWithCode(ApiBaseUrl, credentials);
 
             // token for user
             var token = Authentication.RequestAccessToken(ApiBaseUrl, credentials).Result;
