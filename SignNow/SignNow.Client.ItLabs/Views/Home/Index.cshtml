@@ -11,6 +11,7 @@
     <h2>Basic Examples</h2>
     <h4 id="example001">1. <a href="eg001">Embedded Signing Ceremony</a></h4>
     <h4 id="example002">2. <a href="eg002">Authorization code grant type</a></h4>
+    <h4 id="example002">3. <a href="eg003">Email Invitation Signing Ceremony</a></h4>
     <br />
     <br />
     <div class="container">
@@ -26,7 +27,8 @@
                     <small class="text-muted">Brief description</small>
                 </div>
                 <span class="text-muted">@DocumentCount(folder)</span>
-            </li> } }
+            </li>
+ } }
                 </ul>
             </div>
             <div class="col-md-8 order-md-2">
@@ -47,7 +49,8 @@
                     </small>
                 </div>
                 <span class="text-muted">@DocumentStatus(document.Status)</span>
-            </li> } }
+            </li>
+ } }
                 </ul>
             </div>
         </div>
@@ -73,58 +76,58 @@
     </style>
     @functions
     { public static string InviteStatus(SignNow.Net.Model.InviteStatus status)
-                {
-                    var result = "unkown";
-                    switch (status)
-                    {
-                        case SignNow.Net.Model.InviteStatus.Created:
-                            result = "Created";
-                            break;
-                        case SignNow.Net.Model.InviteStatus.Fulfilled:
-                            result = "<span class='dot-green' title='Signed'></span";
-                            break;
-                        case SignNow.Net.Model.InviteStatus.Pending:
-                            result = "<span class='dot-orange' title='Waiting for others'></span"; ;
-                            break;
-                        case SignNow.Net.Model.InviteStatus.Skipped:
-                            result = "Skipped";
-                            break;
-                        default:
-                            break;
-                    }
-                    return result;
-                }
-                public static string DocumentStatus(SignNow.Net.Model.DocumentStatus status)
-                {
-                    var result = "unkown";
-                    switch (status)
-                    {
-                        case SignNow.Net.Model.DocumentStatus.NoInvite:
-                            result = "No invites";
-                            break;
-                        case SignNow.Net.Model.DocumentStatus.Pending:
-                            result = "Waiting for Others";
-                            break;
-                        case SignNow.Net.Model.DocumentStatus.Completed:
-                            result = "Signed";
-                            break;
-                        default:
-                            break;
-                    }
-                    return result;
-                }
-                public static string DocumentCount(SignNow.Net.Model.SignNowFolder folder)
-                {
-                    var result = "";
+        {
+            var result = "unkown";
+            switch (status)
+            {
+                case SignNow.Net.Model.InviteStatus.Created:
+                    result = "Created";
+                    break;
+                case SignNow.Net.Model.InviteStatus.Fulfilled:
+                    result = "<span class='dot-green' title='Signed'></span";
+                    break;
+                case SignNow.Net.Model.InviteStatus.Pending:
+                    result = "<span class='dot-orange' title='Waiting for others'></span"; ;
+                    break;
+                case SignNow.Net.Model.InviteStatus.Skipped:
+                    result = "Skipped";
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+        public static string DocumentStatus(SignNow.Net.Model.DocumentStatus status)
+        {
+            var result = "unkown";
+            switch (status)
+            {
+                case SignNow.Net.Model.DocumentStatus.NoInvite:
+                    result = "No invites";
+                    break;
+                case SignNow.Net.Model.DocumentStatus.Pending:
+                    result = "Waiting for Others";
+                    break;
+                case SignNow.Net.Model.DocumentStatus.Completed:
+                    result = "Signed";
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+        public static string DocumentCount(SignNow.Net.Model.SignNowFolder folder)
+        {
+            var result = "";
 
-                    if (folder.DocumentCount != "0")
-                        return folder.DocumentCount;
+            if (folder.DocumentCount != "0")
+                return folder.DocumentCount;
 
-                    if (folder.TemplateCount != "0")
-                        return folder.TemplateCount;
+            if (folder.TemplateCount != "0")
+                return folder.TemplateCount;
 
-                    return result;
-                } }
+            return result;
+        } }
 
     <!-- anchor-js is only for the index page -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
