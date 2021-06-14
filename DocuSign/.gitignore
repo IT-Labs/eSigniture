@@ -261,5 +261,5 @@ __pycache__/
 *.pyc
 
 #configuration files (secrets), should not be checked in to source control
-appsettings.json
-private.key
+#appsettings.json
+#private.key
